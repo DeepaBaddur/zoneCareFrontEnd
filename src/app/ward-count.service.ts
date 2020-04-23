@@ -76,7 +76,7 @@ export class ApiService {
   getWardDetails(val): Observable<any> {
     return this.http
       //.get<any>(this.ward_details+'?pincode_ward='+val)
-	.get<any>(this.ward_details+'/'+this.pincode+val)
+	.get<any>(this.ward_details+'/'+val)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -85,7 +85,7 @@ export class ApiService {
   moreServiceLists(val): Observable<any> {
     return this.http
       //.get<any>(this.moreservice_list+'?pincode_ward='+val)
-	.get<any>(this.moreservice_list+'/'+this.pincode+val)
+	.get<any>(this.moreservice_list+'/'+val)
       .pipe(
         retry(2),
         catchError(this.handleError)
