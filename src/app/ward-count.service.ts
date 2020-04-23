@@ -12,11 +12,11 @@ export class ApiService {
   // API path
   world_count = 'https://corona-virus-stats.herokuapp.com/api/v1/cases/general-stats';
   india_count = 'https://api.covid19india.org/data.json';
-  ward_list = ' http://zonecareservices.eu-gb.mybluemix.net/api/wards'; 
-  ward_details = ' http://zonecareservices.eu-gb.mybluemix.net/api/covidcounts';
+  ward_list = ' https://zonecareservices.eu-gb.mybluemix.net/api/wards'; 
+  ward_details = ' https://zonecareservices.eu-gb.mybluemix.net/api/covidcounts';
   //ward_details = '../assets/data/warddetails.json';
   //moreservice_list = '../assets/data/moreservices.json';
-  moreservice_list = ' http://zonecareservices.eu-gb.mybluemix.net/api/wardservices';
+  moreservice_list = ' https://zonecareservices.eu-gb.mybluemix.net/api/wardservices';
   pincode = "";
  
   constructor(private http: HttpClient) { }
