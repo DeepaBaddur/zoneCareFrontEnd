@@ -10,12 +10,14 @@ import { retry, catchError } from 'rxjs/operators';
 export class ApiService {
  
   // API path
-  world_count = 'https://corona.lmao.ninja/v2/all';
+  world_count = 'https://corona-virus-stats.herokuapp.com/api/v1/cases/general-stats';
   india_count = 'https://api.covid19india.org/data.json';
-  ward_list = '../assets/data/wardlist.json';     // comments this line 
-  // ward_list = ' http://localhost:8080/api/wards'; // un-comments this line for prod
-  ward_details = '../assets/data/warddetails.json';
-  moreservice_list = '../assets/data/moreservices.json';
+  ward_list = ' http://zonecareservices.eu-gb.mybluemix.net/api/wards'; 
+  ward_details = ' http://zonecareservices.eu-gb.mybluemix.net/api/covidcounts';
+  //ward_details = '../assets/data/warddetails.json';
+  //moreservice_list = '../assets/data/moreservices.json';
+  moreservice_list = ' http://zonecareservices.eu-gb.mybluemix.net/api/wardservices';
+  pincode = "";
  
   constructor(private http: HttpClient) { }
  
@@ -62,9 +64,10 @@ export class ApiService {
       )
   };
   getWardList(val): Observable<any> {
+    this.pincode = val;
     return this.http
-      .get<any>(this.ward_list+'?pincode_ward='+val)   // comments this line 
-      // .get<any>(this.ward_list+'/'+val) // un-comments this line for prod
+      //.get<any>(this.ward_list+'?pincode_ward='+val)   // comments this line 
+       .get<any>(this.ward_list+'/'+val) // un-comments this line for prod
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -72,7 +75,8 @@ export class ApiService {
   };
   getWardDetails(val): Observable<any> {
     return this.http
-      .get<any>(this.ward_details+'?pincode_ward='+val)
+      //.get<any>(this.ward_details+'?pincode_ward='+val)
+	.get<any>(this.ward_details+'/'+this.pincode+val)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -80,7 +84,8 @@ export class ApiService {
   };
   moreServiceLists(val): Observable<any> {
     return this.http
-      .get<any>(this.moreservice_list+'?pincode_ward='+val)
+      //.get<any>(this.moreservice_list+'?pincode_ward='+val)
+	.get<any>(this.moreservice_list+'/'+this.pincode+val)
       .pipe(
         retry(2),
         catchError(this.handleError)
