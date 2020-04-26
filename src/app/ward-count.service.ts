@@ -82,7 +82,7 @@ export class ApiService {
   };
   moreServiceLists(val): Observable<any> {
     return this.http
-      .//.get<any>(this.moreservice_list+'?pincode_ward='+val)
+      //.get<any>(this.moreservice_list+'?pincode_ward='+val)
 	.get<any>(this.moreservice_list+'/'+val)
       .pipe(
         retry(2),
